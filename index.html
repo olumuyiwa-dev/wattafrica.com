@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WattAfrica — Light Every Home</title>
+    <meta name="description" content="WattAfrica builds intelligent community solar mini-grids delivering 24-hour reliable electricity to Nigerian communities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --amber: #E8A025;
+            --amber-light: #F5C85B;
+            --amber-glow: rgba(232, 160, 37, 0.15);
+            --deep: #0C1A2A;
+            --deep-mid: #132438;
+            --slate: #1E3350;
+            --warm-white: #F5F0E8;
+            --cream: #FAF6EF;
+            --text-secondary: #94A3B8;
+            --text-dim: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--deep);
+            color: var(--warm-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ───────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(12, 26, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(232, 160, 37, 0.08);
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--warm-white);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .logo span {
+            color: var(--amber);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-links a:hover {
+            color: var(--amber);
+        }
+
+        .nav-contact {
+            background: transparent;
+            border: 1px solid var(--amber);
+            color: var(--amber) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-contact:hover {
+            background: var(--amber);
+            color: var(--deep) !important;
+        }
+
+        /* ── HERO ──────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 2rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(232, 160, 37, 0.3);
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--warm-white);
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--amber);
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--amber);
+            color: var(--deep);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-cta:hover {
+            background: var(--amber-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 160, 37, 0.25);
+        }
+
+        .hero-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ── STATS BAR ─────────────────────────────── */
+        .stats {
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(232, 160, 37, 0.1);
+            border-bottom: 1px solid rgba(232, 160, 37, 0.1);
+            background: var(--deep-mid);
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            color: var(--amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* ── PROBLEM / SOLUTION ────────────────────── */
+        .section {
+            padding: 7rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--warm-white);
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .section-text strong {
+            color: var(--warm-white);
+            font-weight: 500;
+        }
+
+        /* ── HOW IT WORKS ──────────────────────────── */
+        .how-section {
+            padding: 7rem 2rem;
+            background: var(--deep-mid);
+        }
+
+        .how-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .how-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(232, 160, 37, 0.1);
+            border-radius: 6px;
+            background: rgba(12, 26, 42, 0.5);
+            transition: border-color 0.3s;
+        }
+
+        .how-card:hover {
+            border-color: rgba(232, 160, 37, 0.3);
+        }
+
+        .how-card-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--amber);
+            margin-bottom: 1rem;
+        }
+
+        .how-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--warm-white);
+        }
+
+        .how-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        /* ── VALUES ────────────────────────────────── */
+        .values-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .value-word {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--amber);
+            margin-bottom: 0.8rem;
+        }
+
+        .value-desc {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        /* ── FOUNDER ───────────────────────────────── */
+        .founder-section {
+            padding: 7rem 2rem;
+            background: var(--deep-mid);
+        }
+
+        .founder-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .founder-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            line-height: 1.7;
+            color: var(--warm-white);
+            font-weight: 400;
+            font-style: italic;
+            border-left: 3px solid var(--amber);
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .founder-attr {
+            margin-top: 1.5rem;
+            padding-left: 2rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .founder-attr strong {
+            color: var(--warm-white);
+            font-weight: 500;
+        }
+
+        /* ── CTA ───────────────────────────────────── */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section .section-text {
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section .hero-cta {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── FOOTER ────────────────────────────────── */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(232, 160, 37, 0.08);
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand span {
+            color: var(--amber);
+        }
+
+        .footer-tagline {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: rgba(100, 116, 139, 0.6);
+        }
+
+        /* ── MOBILE ────────────────────────────────── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .how-section,
+            .founder-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .founder-text {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* ── ANIMATIONS ────────────────────────────── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag { animation: fadeUp 0.8s ease both; animation-delay: 0.2s; }
+        h1 { animation: fadeUp 0.8s ease both; animation-delay: 0.4s; }
+        .hero-text { animation: fadeUp 0.8s ease both; animation-delay: 0.6s; }
+        .hero-cta { animation: fadeUp 0.8s ease both; animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Watt<span>Africa</span></a>
+        <ul class="nav-links">
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#values">Values</a></li>
+            <li><a href="#contact" class="nav-contact">Get In Touch</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Intelligent Energy Infrastructure</span>
+            <h1>Light <em>Every</em> Home</h1>
+            <p class="hero-text">
+                WattAfrica builds community solar mini-grids that deliver 24-hour reliable electricity to Nigerian communities — bypassing the failing national grid entirely. AI-powered. Community-owned. Built to last.
+            </p>
+            <a href="#contact" class="hero-cta">
+                Partner With Us
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number">80M+</div>
+                <div class="stat-label">Nigerians Without Reliable Power</div>
+            </div>
+            <div>
+                <div class="stat-number">$50–80</div>
+                <div class="stat-label">Monthly Generator Cost Per Household</div>
+            </div>
+            <div>
+                <div class="stat-number">24hr</div>
+                <div class="stat-label">Reliable Electricity Delivered</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="mission">
+        <div class="section-label">The Problem</div>
+        <h2>Generator fumes shouldn't be the sound of progress</h2>
+        <p class="section-text">
+            Across Nigeria, families, clinics, schools, and businesses depend on expensive, polluting diesel and petrol generators for daily electricity. A household in Oyo State spends <strong>₦40,000–₦80,000 every month</strong> on fuel — money that could go toward education, healthcare, or savings. The national grid delivers fewer than 8 hours of power per day in many communities. For some, it delivers nothing at all.
+        </p>
+    </section>
+
+    <section class="how-section" id="how">
+        <div class="how-inner">
+            <div class="section-label">Our Solution</div>
+            <h2>Community power, intelligently delivered</h2>
+            <p class="section-text">
+                WattAfrica develops, owns, and operates hybrid solar mini-grids at the community level. We generate clean electricity on-site and deliver it directly to homes and businesses through smart prepaid meters — no national grid dependency, no generator noise, no fuel costs.
+            </p>
+            <div class="how-grid">
+                <div class="how-card">
+                    <div class="how-card-number">01</div>
+                    <h3>Solar Generation</h3>
+                    <p>Community-scale solar arrays with battery storage and LPG generator backup. Power is generated where it's consumed — no transmission losses, no grid dependency.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-number">02</div>
+                    <h3>Smart Metering</h3>
+                    <p>Prepaid smart meters give customers full control of their electricity spending. Top up via mobile money. No surprise bills. No disconnection without warning.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-number">03</div>
+                    <h3>AI-Powered Operations</h3>
+                    <p>Intelligent monitoring predicts demand, detects faults before they happen, and optimises energy dispatch — all managed remotely in real time.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-number">04</div>
+                    <h3>Community-First Service</h3>
+                    <p>Customer service in English and Yoruba via WhatsApp. Transparent pricing. Local employment. We don't just power communities — we're part of them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="values">
+        <div class="section-label">Our Values</div>
+        <h2>What we stand on</h2>
+        <div class="values-row">
+            <div class="value-item">
+                <div class="value-word">Reliable</div>
+                <p class="value-desc">24-hour electricity is not a luxury. It is infrastructure. We build systems that work when everything else fails.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-word">Rooted</div>
+                <p class="value-desc">We build for specific communities, not abstract markets. Every decision starts with the people we serve.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-word">Intelligent</div>
+                <p class="value-desc">Technology should make power cheaper and more reliable, not more complicated. AI serves the operator and the customer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder-section">
+        <div class="founder-inner">
+            <div class="section-label">The Founder</div>
+            <h2>Built from both worlds</h2>
+            <blockquote class="founder-text">
+                I grew up between Nigeria and America — connected to both, shaped by both. I've seen what reliable electricity means for a family's future, and I've seen what happens when it's absent. WattAfrica exists because no community should be limited by the absence of power.
+            </blockquote>
+            <div class="founder-attr">
+                <strong>Founder</strong> — Nigerian-American, Yoruba heritage, IT professional, building WattAfrica to bridge the gap between American technology and Nigerian community needs.
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="section-label">Get Involved</div>
+        <h2>Light a community</h2>
+        <p class="section-text">
+            Whether you're an investor, partner, community leader, or someone who believes electricity shouldn't be a privilege — we want to hear from you.
+        </p>
+        <a href="mailto:hello@wattafrica.com" class="hero-cta">
+            hello@wattafrica.com
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Watt<span>Africa</span></div>
+        <div class="footer-tagline">Light Every Home</div>
+        <div class="footer-copy">&copy; 2026 WattAfrica LLC. All rights reserved.</div>
+    </footer>
+
+</body>
+</html>
